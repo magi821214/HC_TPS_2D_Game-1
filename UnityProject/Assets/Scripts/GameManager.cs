@@ -6,7 +6,10 @@ public class GameManager : MonoBehaviour
     public int score;
     [Header("最高分數")]
     public int scoreHeight;
-
+    [Header("水管")]
+    //GameObject 可以存放場景上的遊戲物件和專案內的預製物
+    public GameObject pipe;
+    
     // 修飾詞權限：
     // private 其他類別無法使用
     // public 其他類別可以使用
@@ -32,7 +35,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void SpawnPipe()
     {
-
+        print("生成水管");
+        float y = Random.Range(-0.8f, 1.2f);
+        Vector3 pos = new Vector3(Random.Range(0, 2), y, 0);
+        //Quaternion.identity 代表零角度;
+        Instantiate(pipe, pos, Quaternion.identity);
     }
 
     /// <summary>
@@ -42,4 +49,11 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
+    private void Start()
+    {
+        InvokeRepeating("SpawnPipe", 0, 0.7f);
+        //SpawnPipe();
+    }
+    
 }

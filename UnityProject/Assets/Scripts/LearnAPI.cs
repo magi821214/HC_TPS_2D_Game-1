@@ -17,17 +17,14 @@ public class LearnAPI : MonoBehaviour
         print("物件A的座標 : " + TransformA.position);
         //TransformA.position = new Vector3(-1,1,0);
         //TransformA.Rotate(0,0,1);
+        print("遊戲音效初始狀態 : " + AudioS.isPlaying);
+        
         if (AudioS.isPlaying)
         {
-            AudioS.playOnAwake = false;
-            print("遊戲音效 : " + TransformA.position);
+            AudioS.Stop();
         }
-        else
-        {
-            AudioS.playOnAwake = true;
-        }
-
-        print("攝影機深度 : " + cam.depth);
+       
+        print("遊戲音效狀態 : " + AudioS.isPlaying);
     }
     private void Update()
     {

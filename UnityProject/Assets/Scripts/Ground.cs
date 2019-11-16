@@ -2,10 +2,10 @@
 
 public class Ground : MonoBehaviour
 {
-    [Header("地板移動速度"), Range(0, 200)]
+    [Header("移動速度"), Range(0, 200)]
     public int speed = 10;
 
-    [Header("地板變型元件")]
+    [Header("變型元件")]
     public Transform ground;
 
     private void Update()
