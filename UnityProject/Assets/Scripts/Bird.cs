@@ -3,7 +3,7 @@
 public class Bird : MonoBehaviour
 {
     [Header("跳躍高度"), Range(10, 2000)]
-    public int jump = 100;
+    public int jump = 88;
     [Header("跳躍角度"), Range(0, 100)]
     public float angle = 10;
     [Header("是否死亡"), Tooltip("用來判斷角色是否死亡，true 死亡，false 還沒死亡")]
@@ -34,13 +34,18 @@ public class Bird : MonoBehaviour
             aud.PlayOneShot(soundJumppm, 1.5f); //喇叭.撥放一次音效(音效,音量)
             print("玩家按下左鍵");
             r2d.Sleep();//刪除這個物理系統的所有事情
-            r2d.gravityScale = 1; //小雞剛體.重力 = 1;
+            r2d.gravityScale = 0.8f; //小雞剛體.重力 = 1;
             r2d.AddForce(new Vector2(0,jump)); //小雞剛體.增加推力 (二維向量=>左右、上下)
 
             //讓分數顯示、GM顯示
             goScore.SetActive(true);
             goGM.SetActive(true);
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            r2d.gravityScale = 2.1f;
         }
         //Rigidbody2D.SetRotation(float) 設定角度
         //Rigidbody2D.velocity 加速度(二維向量 x,y)
@@ -88,7 +93,7 @@ public class Bird : MonoBehaviour
     //事件: 觸發離開 - 物件離開觸發區域執行一次
     private void OnTriggerExit2D(Collider2D hit)
     {
-        if (hit.name == "加分")
+        if (hit.name == "加分" && !dead)
         {
             aud.PlayOneShot(soundAdd, 2f);
             game.AddScore();
